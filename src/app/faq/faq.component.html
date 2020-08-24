@@ -1,0 +1,50 @@
+<h2>{{ 'qaa' | translate }}</h2>
+<!--
+<div *ngFor="let item of accordion" [ngStyle]="{'margin':'20px 20px'}">
+	<div [ngClass]="{'fa fa-caret-down': item.isDisplay==true, 'fa fa-caret-up': item.isDisplay==false}" (click)="toggleAction(item.id)" [ngStyle]="{'background-color':'#fc3503','width':'400px'}">
+		{{ item.title }}
+	</div>
+	<div [hidden]="item.isDisplay" [ngStyle]="{'background-color':'#fc7b03','width':'400px'}">
+		{{ item.text }}
+	</div>
+</div>
+-->
+
+<div [ngStyle]="{'margin':'20px 20px'}">
+	<div [ngStyle]="{'margin':'10px 10px','width':'400px'}" (click)="changeImage()">
+		<div [ngStyle]="{'background-color':'#fc3503','width':'400px','cursor':'pointer'}"
+			(click)="toggleBlock1 = !toggleBlock1">
+			<img [src]="path" style=" width:20px;float:right;">
+			{{ 'accordion_title1' | translate }}
+			<div style="clear:both"></div>
+		</div>
+		<div [ngStyle]="{'background-color':'#fc7b01','width':'400px'}" class="text-element"
+			[ngClass]="{show:toggleBlock1}">
+			{{ 'accordion_text1' | translate }}
+		</div>
+	</div>
+	<div [ngStyle]="{'margin':'10px 10px','width':'400px'}" (click)="changeImage2()">
+		<div [ngStyle]="{'background-color':'#fc3503','width':'400px','cursor':'pointer'}"
+			(click)="toggleBlock2 = !toggleBlock2">
+			<img [src]="path2" style=" width:20px;float:right;">
+			<div>{{ 'accordion_title2' | translate }}</div>
+			<div style="clear:both"></div>
+		</div>
+		<div [ngStyle]="{'background-color':'#fc7b03','width':'400px'}" class="text-element"
+			[ngClass]="{show:toggleBlock2}">
+			{{ 'accordion_text2' | translate }}
+		</div>
+	</div>
+	<div [ngStyle]="{'margin':'10px 10px','width':'400px'}" (click)="changeImage3()">
+		<div [ngStyle]="{'background-color':'#fc3503','width':'400px','cursor':'pointer'}"
+			(click)="toggleBlock3 = !toggleBlock3">
+			<img [src]="path3" style=" width:20px;float:right;">
+			{{ 'accordion_title3' | translate }}
+			<div style="clear:both"></div>
+		</div>
+		<div [ngStyle]="{'background-color':'#fc7b03','width':'400px'}" class="text-element"
+			[ngClass]="{show:toggleBlock3}">
+			{{ 'accordion_text3' | translate }}
+		</div>
+	</div>
+</div>

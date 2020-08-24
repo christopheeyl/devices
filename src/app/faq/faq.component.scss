@@ -1,0 +1,23 @@
+.text-element {
+    height:0;
+    opacity:0;
+    overflow:hidden;
+    transition:all 500ms ease-in-out;
+
+    &.show {
+        height:100%;
+        opacity:1;
+    }
+}
+
+div.img-caret-d {
+    height:25px;
+    content:url(./../../assets/img/caret-down-solid.svg);
+    text-align:right;
+ }
+
+ div.img-caret-u {
+    height:25px;
+    content:url(./../../assets/img/caret-up-solid.svg);
+    text-align:right;
+ }

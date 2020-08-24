@@ -1,0 +1,90 @@
+<h2>{{ 'title1' | translate }}</h2>
+
+<div>
+	<p>{{ 'add_device' | translate }}</p>
+	<form class="input-group">
+		<input class="form-control" type="text" name="device" [(ngModel)]="device_Name" placeholder="{{ 'device_name' | translate }}">
+		<input class="form-control" type="text" name="owner" [(ngModel)]="owner_Name" placeholder="{{ 'owner_name' | translate }}">
+		<button class="btn btn-success" (click)="addDevice($event)" type="button">{{ 'submit' | translate }}</button>
+	</form>
+</div>
+
+<div>
+	<p>{{ 'add_device_csv' | translate }}</p>
+	<form class="input-group">
+		<input class="form-control" type="text" name="csvFile" placeholder="{{ 'csv_file' | translate }}">
+		<input type="file" class="upload" (change)="changeListener($event.target.files)">
+	</form>
+</div>
+
+<div>
+	<br/><br/>
+	{{ 'selected' | translate }}
+	:
+	{{ countTotalChecked() }}
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>X</th>
+			<th>ID
+				<i (click)="sortAsc()" class="fa fa-caret-up"></i>
+				<i (click)="sortDesc()" class="fa fa-caret-down"></i>
+			</th>
+			<th>{{ 'device' | translate }}</th>
+			<th>{{ 'owner' | translate }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="form-control" type="checkbox" name="All" [(ngModel)]="checkAll" (change)="checkedAll($event)"></td>
+			<td><input class="form-control" style="width: 50px;" type="text" name="searchId" [(ngModel)]="id" (input)="searchById($event.target.value)"/></td>
+			<td><input class="form-control" type="text" name="searchDevice" [(ngModel)]="deviceName" (input)="searchByDeviceName($event.target.value)"></td>
+			<td><input class="form-control" type="text" name="searchName" [(ngModel)]="name" (input)="searchByOwnerName($event.target.value)">
+			</td>
+		</tr>
+		<tr *ngFor="let device of devicesList | paginate: { itemsPerPage: 4, currentPage: p }">
+			<td><input class="form-control" (change)="checkboxChange(device.id)" type="checkbox" name="device.text" [checked]="device.checked"></td>
+			<td>{{ device.id }}</td>
+			<td>{{ device.deviceName }}</td>
+			<td>{{ device.name }}</td>
+		</tr>
+	</tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<br>
+<div>
+	<button class="btn btn-danger" (click)="delete()" type="button">{{ 'delete' | translate }}</button>
+	&nbsp;
+	<button class="btn btn-secondary" (click)="deleteAll()" type="button">{{ 'delete_all' | translate }}</button>
+	&nbsp;
+	<button class="btn btn-secondary" (click)="reset()" type="button">{{ 'reset' | translate }}</button>
+	<br>
+	<!-- <button class="btn btn-secondary" type="button" (click)="newWindow()">Ouvrir une autre page</button> -->
+</div>
+<br>
+<h2>{{ 'trash' | translate }}</h2>
+<nav class="navbar">
+	Filter:
+	<input class="form-control" type="text" name="search" [(ngModel)]="filter">
+</nav>
+<br>
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>{{ 'device' | translate }}</th>
+			<th>{{ 'owner' | translate }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of trash | filter:filter; let i = index">
+			<td>{{ item.id }}</td>
+			<td>{{ item.deviceName }}</td>
+			<td>{{ item.name }}</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<button class="btn btn-danger" (click)="clean()" type="button">{{ 'clean' | translate }}</button>
